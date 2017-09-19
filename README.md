@@ -1,181 +1,43 @@
-# Looping Code-along
+# JavaScript Logging Lab
 
 ## Objectives
-- Build a `for` loop.
-- Build a `while` loop.
-- Explain the purpose of a loop.
-- Understand when to use each type of loop.
+
+1. Practice using `console.log()`
 
 ## Introduction
-Sometimes, we need to do things repeatedly. Let's say we have a bunch of gifts to wrap. They all happen to be the same size and shape, so for every gift, we need to cut a similarly sized piece of wrapping paper, fold it up over the edges of the gift, tape it together, and add a nice little card. Then we set the wrapped gift aside and moved onto the next gift.
 
-In programming terms, we can think of our **collection** of gifts as an **array** and the act of wrapping them as a function. For example:
-```js
-const gifts = ['teddy bear', 'drone', 'doll'];
+Another JavaScript lab!  In this lab, we are practicing our use of `console.log` to debug in JavaScript.
 
-function wrapGift (gift) {
-  console.log(`Wrapped ${gift} and added a bow!`);
-}
-```
+Remember the workflow:
 
-We could then call `wrapGift()` on each gift individually:
-```js
-wrapGift(gifts[0]);
-wrapGift(gifts[1]);
-wrapGift(gifts[2]);
-```
+1. Run `learn-test`.
 
-However, this isn't very efficient or extensible. It's a lot of repetitive code to write out, and if we had more gifts we'd have to write a whole new line for each.
+2. Read the errors; vocalize what they're asking you to do.
 
-This is where loops come in handy! With a loop, we can just write the repeated action **once** and perform the action on **every item in the collection**.
+3. Write code; repeat steps 1 and 2 often until a test passes.
 
-Loops are used to execute the same block of code a specified number of times. In JavaScript, loops come in a few different flavors, but the main two are `for` and `while` loops.
+4. Repeat as needed for further tests.
 
-This is a code-along, so follow along with the instructions in each section. There are tests to make sure you're coding your solutions correctly.
+5. Run `learnsubmit` when finished!
 
-## The `for` loop
-Of the loops in JavaScript, the `for` loop is the most common. The `for` loop is made up of four statements in the following structure:
-```js
-for ([initialization]; [condition]; [iteration]) {
-  [loop body]
-}
-```
+## Working through these tests
 
-- Initialization
-  - Typically used to initialize a **counter** variable.
-- Condition
-  - An expression evaluated before each pass through the loop. If this expression evaluates to `true`, the statements in the loop body are executed. If the expression evaluates to `false`, the loop exits.
-- Iteration
-  - A statement executed at the end of each iteration. Typically, this will involve incrementing or decrementing a counter, bringing the loop ever closer to completion.
-- Loop body
-  - Code that runs on each pass through the loop.
++ `driver` - This test is already working for you.  If you look inside the `it` function you will see that the first test expects a variable named `driver` to have a value of `bob`.  When you open up the `index.js` file, you will see that this already is declared in the first line.  
++ `console.log()` - Let's take a look at the second `describe` function call inside of `test/index.js`.  Here, you can see that the tests inside of here are asking for a few things.  Let's take them in turn.
+  * If you look at the first `it` function call, the tests ask that `invokes console.log() with the string "this code was called"`.  Then, the next line says `spy` to be `calledWithExactly` the string `this code was called`.  To pass this test, we can write `console.log('this code was called')` inside of our `index.js` file.  Yes, I know we are a little confused.  What is a spy?  It's ok if you walk away from course not knowing.  Just understand that here we are using this `spy` thing to test that `console.log` is called, and what arguments it is passed to.  So whenever you see
+  `expect(spy.calledWithExactly('this code was called')).to.be.true` what we really mean is that we expect `console.log` to be called with the argument `this code was called`.  For more details on what the `spy` is doing, see our "note about spies" below.
+  * In the second to last `it` function call in `test/indexTest.js` we test that `console.log` is called with our `driver` variable.  This is a task you may find yourself doing a lot.  Using `console.log` to see the value of a variable.  If you pass the `variable` driver to `console.log` your test should be passing.  More to the point, if you open up your browser's console (by pressing cmd+shift+c on a mac), you can see your corresponding data logged.
+  * The final `it` function call in this lab, the test asks you to practice passing multiple arguments to `console.log`.  The first argument is the `driver` variable, and the second argument should be the string `is the driver variable name`.  
 
-***Usage***: Use a `for` loop when you know exactly how many times you want the loop to run (for example, when you have an array of known size).
+## A note about spies
 
-### Examples
-The code below will announce our next ten birthdays:
-```js
-for (let age = 30; age < 40; age++) {
-  console.log(`I'm ${age} years old. Happy birthday to me!`);
-}
+You might often see errors like the ones above: `"Uncaught error: spy was not
+called"`. Spies are little bits of code that keep track of whether or not they
+were called.  Underneath the code `describe('console.log', function(){ ...`, you can see the code `spy = sinon.spy(console, 'log');`.  This asks our tests to watch the `console.log` function.  Later on in an `it` block, we can ensure that `console.log` is called, and can see what arguments it is called with.  We are using the `spy` because, well how else can we tell you are calling this function?  The function returns `undefined` after all, so we can't really check the return value of your code, and `console.log` affects your browser's console, which we can't easily read.  So we just test to make sure you made use of this function, and to do so we use a spy.  If this was confusing to you, it is not a core JavaScript topic nor is it a pre-requisite to learning more with JavaScript, so you can happily move ahead.
 
-// LOG: I'm 30 years old. Happy birthday to me!
-// LOG: I'm 31 years old. Happy birthday to me!
-// LOG: I'm 32 years old. Happy birthday to me!
-// LOG: I'm 33 years old. Happy birthday to me!
-// LOG: I'm 34 years old. Happy birthday to me!
-// LOG: I'm 35 years old. Happy birthday to me!
-// LOG: I'm 36 years old. Happy birthday to me!
-// LOG: I'm 37 years old. Happy birthday to me!
-// LOG: I'm 38 years old. Happy birthday to me!
-// LOG: I'm 39 years old. Happy birthday to me!
-```
-
-In the above code, `let age = 30` is the **initialization**, as we create a variable, `age`, that we'll use in the next three phases of the loop. Notice that we use `let` instead of `const` because we need to increment the value of `age`.
-
-The **condition** for the above loop is `age < 40`, or, in other words, "Run the code in the loop body until `age` is NOT less than `40`." As long as the condition evaluates to `true`, execute the code in the loop body, increment the value of `age`, and then reevaluate the condition. As soon as the condition evaluates to `false`, exit the loop.
-
-The **iteration** is `age++`, which increments the value of `age` by `1` after every pass through the loop. We initialized `age` as `30`, and it retains that value during the first pass through the loop. At the end of the first pass, we increment `age` to `31`, check whether the condition still holds `true`, and, since it does, run the loop body again with `age` as `31`. After that second loop, we increment `age` to `32`, and so on.
-
-The **loop body** is the set of statements that we want to run when the condition evaluates to `true`.
-
-`for` loops are often used to iterate over every element in an array. Let's rewrite our gift-wrapping action above as a `for` loop:
-```js
-const gifts = ['teddy bear', 'drone', 'doll'];
-
-function wrapGifts (gifts) {
-  for (let i = 0; i < gifts.length; i++) {
-    console.log(`Wrapped ${gifts[i]} and added a bow!`);
-  }
-
-  return gifts;
-}
-
-wrapGifts(gifts);
-// LOG: Wrapped teddy bear and added a bow!
-// LOG: Wrapped drone and added a bow!
-// LOG: Wrapped doll and added a bow!
-// => ["teddy bear", "drone", "doll"]
-```
-
-We started our counter, `i`, at `0` because arrays have zero-based indexes. Our condition states that we should run the code in the loop body while `i` is less than `gifts.length` (`3` in the above example). Our iteration, `i++`, increments our counter by `1` at the end of each pass through the loop. In our loop body, notice that we reference `gifts[i]`. Since `i` starts out as `0`, during the first pass through the loop `gifts[i]` is `gifts[0]` is `'teddy bear'`. During the second pass through the loop, `gifts[i]` is `gifts[1]` is `'drone'`. And during the final pass through the loop, `gifts[i]` is `gifts[2]` is `'doll'`. After the third pass through the loop, we increment `i` to `3`, which is no longer less than `gifts.length`. Our condition evaluates to `false`, and we exit the loop.
-
-We'll encounter `for` loops again when we learn about iterating through object literals.
-
-### Assignment
-We're going to print out some welcome badges for new Flatbook employees. Build a function named `printBadges()` that accepts one argument, an array of employee names. Create a `for` loop with a counter that starts at `0` and increments at the end of each loop. The condition should halt the `for` loop after the last name in the array is printed out in the loop body.
-
-Inside the loop, use `console.log()` to print out a badge for each employee, as follows:
-```js
-printBadges(['Ada', 'Brendan', 'Ali']);
-// LOG: Welcome Ada! You are employee #1.
-// LOG: Welcome Brendan! You are employee #2.
-// LOG: Welcome Ali! You are employee #3.
-// => ["Ada", "Brendan", "Ali"]
-```
-
-After the loop completes, have the function return the original array.
-
-## The `while` loop
-The `while` loop is similar to a `for` loop in that it will keep looping as long as the condition evaluates to `true`. However, the idea behind a `for` loop is that it should loop a set number of times (e.g., start with `i = 0` and loop while `i < 25`). A `while` loop, on the other hand, is designed to loop an indefinite amount of times — it should keep looping **while** the condition is `true` or, said differently, **until** the condition is `false`. There isn't a definite limit like "25 times" placed upon it.
-
-A `while` loop has the following structure:
-```js
-while ([condition]) {
-  [loop body]
-}
-```
-
-***Usage***: A `while` loop is best used when we don't know how many times a loop needs to run. Often, this is because the condition depends on a dynamic value.
-
-### Example
-```js
-function maybeTrue () {
-  return Math.random() >= 0.5;
-}
-
-while (maybeTrue()) {
-  console.log('And I ran... I ran so far away!');
-}
-```
-
-In this example, `maybeTrue()` returns `true` half the time and `false` half the time. Our loop runs until `maybeTrue()` returns `false`, so, theoretically, the body of the loop might **never** run (if the first evaluation of `maybeTrue()` returns `false`) or it might run forever (if `maybeTrue()` goes on an incredible streak with `Math.random()` never returning anything below `0.5`). We've used a `while` loop because we don't have any specific number to count up or down to in our loop; we just want it to run until the condition is no longer met.
-
-We can also use a `while` loop in place of a `for` loop. We just have to remember to make sure the condition updates with each pass through the loop so that the loop eventually terminates. Otherwise, it'll run forever, and we'll have to throw our overheating computer out the window and buy a new one. Here's an example of a `while` loop with a defined exit strategy:
-```js
-let countdown = 10;
-
-while (countdown > 0) {
-  console.log(--countdown);
-}
-```
-
-### Assignment
-We're going to create a little game for our Flatbook users to play when they're bored. Create a function named `tailsNeverFails()` that takes no arguments. In the function body, use a `while` loop with a condition that simulates a coin flip (two equally likely outcomes). For inspiration, check out the `maybeTrue()` example above. If the condition evaluates to `true`, the coin landed on 'Tails' and is flipped again. If the condition evaluates to `false`, the coin landed on 'Heads', and the 'Tails' streak is broken. At the end of the function, `return` a message to the user indicating how many times the coin landed on 'Tails' in a row, e.g.:
-```js
-tailsNeverFails();
-// => "You got 3 tails in a row!"
-
-tailsNeverFails();
-// => "You got 0 tails in a row!"
-
-tailsNeverFails();
-// => "You got 5 tails in a row!"
-```
-
-## Conclusion
-If you're feeling a bit lost about when to use a `for` vs. a `while` loop, take a deep breath. Most of the time, a regular `for` loop will suffice. It's by far the most common looping construct in JavaScript. A general heuristic for choosing which loop to use is to first try a `for` loop. If that doesn't serve your purposes, then go ahead and try a `while` or [`do...while`][do...while] loop. Also, remember that you can always refer to the [documentation on these loops][loops and iteration] at any time. After some time programming in JavaScript, writing a `for` loop will come as naturally to you as wrapping one gift after another.
 
 ## Resources
-- Codecademy
-  + [`for` loop](http://www.codecademy.com/glossary/javascript/loops#for-loops)
-  + [`while` loop](http://www.codecademy.com/glossary/javascript/loops#while-loops)
-- MDN
-  + [`for` loop](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for)
-  + [`while` loop](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/while)
-  + [Loops and iteration][loops and iteration]
 
-[do...while]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration#do...while_statement
-[loops and iteration]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration
+- [console.log](https://developer.mozilla.org/en-US/docs/Web/API/Console/log)
 
-<p class='util--hide'>View <a href='https://learn.co/lessons/js-looping-and-iteration-looping-code-along'>Looping Code-along</a> on Learn.co and start learning to code for free.</p>
+<p class='util--hide'>View <a href='https://learn.co/lessons/js-basics-logging-lab'>JavaScript Logging Lab</a> on Learn.co and start learning to code for free.</p>
