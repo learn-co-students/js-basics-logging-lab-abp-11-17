@@ -1,7 +1,7 @@
 {
-  "name": "js-looping-and-iteration-looping-code-along",
+  "name": "js-basics-logging-lab",
   "version": "0.1.0",
-  "description": "Learn.co curriculum's introduction to looping in JavaScript.",
+  "description": "Learn.co's JavaScript Logging Lab.",
   "main": "index.js",
   "scripts": {
     "postinstall": "gem install learn-co",
@@ -13,21 +13,21 @@
   },
   "keywords": [
     "javascript",
-    "for",
-    "while",
-    "loops",
-    "looping",
+    "logging",
+    "log",
+    "console",
+    "console.log",
     "learn.co",
     "flatiron school",
-    "code-along"
+    "lab"
   ],
   "author": "Flatiron School",
   "license": "SEE LICENSE IN LICENSE.md",
   "bugs": {
-    "url": "https://github.com/learn-co-curriculum/js-looping-and-iteration-looping-code-along/issues"
+    "url": "https://github.com/learn-co-curriculum/js-basics-logging-lab/issues"
   },
-  "homepage": "https://github.com/learn-co-curriculum/js-looping-and-iteration-looping-code-along#readme",
+  "homepage": "https://github.com/learn-co-curriculum/js-basics-logging-lab#readme",
   "devDependencies": {
-    "learn-browser": "^0.1.12"
+    "learn-browser": "^0.1.13"
   }
 }
