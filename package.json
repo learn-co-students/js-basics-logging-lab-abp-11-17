@@ -1,7 +1,7 @@
 {
   "name": "js-basics-logging-lab",
   "version": "0.1.0",
-  "description": "Learn.co curriculum's Logging Lab in JavaScript.",
+  "description": "Learn.co's JavaScript Logging Lab.",
   "main": "index.js",
   "scripts": {
     "postinstall": "gem install learn-co",
@@ -28,6 +28,6 @@
   },
   "homepage": "https://github.com/learn-co-curriculum/js-basics-logging-lab#readme",
   "devDependencies": {
-    "learn-browser": "^0.1.12"
+    "learn-browser": "^0.1.13"
   }
 }
