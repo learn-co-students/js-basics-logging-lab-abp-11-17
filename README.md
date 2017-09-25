@@ -33,7 +33,9 @@ Remember the workflow:
 
 You might often see errors like the ones above: `"Uncaught error: spy was not
 called"`. Spies are little bits of code that keep track of whether or not they
-were called.  Underneath the code `describe('console.log', function(){ ...`, you can see the code `spy = sinon.spy(console, 'log');`.  This asks our tests to watch the `console.log` function.  Later on in an `it` block, we can ensure that `console.log` is called, and can see what arguments it is called with.  We are using the `spy` because, well how else can we tell you are calling this function?  The function returns `undefined` after all, so we can't really check the return value of your code, and `console.log` affects your browser's console, which we can't easily read.  So we just test to make sure you made use of this function, and to do so we use a spy.  If this was confusing to you, it is not a core JavaScript topic nor is it a pre-requisite to learning more with JavaScript, so you can happily move ahead.
+were called.  Here, we are ensuring that `console.log` was called - so if you see that error it means that you are not properly calling that `console.log` function.   
+
+Why are we using spys all of a sudden?  Open up the `test/indexTest.js` file and let's see how they work, and learn why we are using this feature.  Underneath the code `describe('console.log', function(){ ...`, you can see the code `spy = sinon.spy(console, 'log');`.  This asks our tests to watch the `console.log` function.  Later on in an `it` block, we can ensure that `console.log` is called, and can see what arguments it is called with.  We are using the `spy` because, well how else can we tell you are calling this function?  The function returns `undefined` after all, so we can't really check the return value of your code, and `console.log` affects your browser's console, which we can't easily read.  So we just test to make sure you made use of this function, and to do so we use a spy.  If this was confusing to you, it is not a core JavaScript topic nor is it a pre-requisite to learning more with JavaScript, so you can happily move ahead.
 
 
 ## Resources
