@@ -28,6 +28,6 @@
   },
   "homepage": "https://github.com/learn-co-curriculum/js-basics-logging-lab#readme",
   "devDependencies": {
-    "learn-browser": "^0.1.12"
+    "learn-browser": "^0.1.13"
   }
 }
