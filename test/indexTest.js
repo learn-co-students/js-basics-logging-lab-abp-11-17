@@ -8,13 +8,9 @@ describe('index.js', function () {
   });
 
   describe('console.log()', function () {
-    let spy;
+    const spy = sinon.spy(console, 'log');
 
-    beforeEach(function () {
-      spy = sinon.spy(console, 'log');
-    });
-
-    afterEach(function () {
+    after(function () {
       spy.restore();
     });
 
